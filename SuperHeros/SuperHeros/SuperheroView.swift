@@ -10,14 +10,19 @@ import SwiftUI
 struct SuperheroView: View {
     
     var superH : Superhero
-    //var gradient : [Color] = [Color("colorHulk01"), Color("colorHulk02")]
+    @State var isScaling : Bool = false
+    @State var isSliding : Bool = false
     @State var isPresentAlert : Bool = false
+    
+    //var gradient : [Color] = [Color("colorHulk01"), Color("colorHulk02")]
     
     var body: some View {
         ZStack {
             Image(superH.image)
                 .resizable()
                 .scaledToFill()
+                .scaleEffect(isScaling ? 1 : 0.7)
+                .animation(.easeOut(duration: 1), value: isScaling)
             VStack{
                 Text(superH.title)
                     .font(.largeTitle)
@@ -41,14 +46,19 @@ struct SuperheroView: View {
 
                 
             }//:vstack
-            .offset(x: 0, y: 150)
+            .offset(y: isSliding ? 150 : 300)
+            .animation(.easeOut(duration: 1), value: isSliding)
             
             
         }//:z stack
-        .frame(width: 335, height: 545, alignment: .center)
+        .frame(width: 350, height: 545, alignment: .center)
         .background(LinearGradient(gradient: Gradient(colors: superH.gradientColors), startPoint: .topLeading, endPoint: .bottomTrailing))
         .cornerRadius(16)
         .shadow(color:.black, radius: 2, x:2, y: 2)
+        .onAppear{
+            isScaling = true
+            isSliding = true
+        }
     }
 }
 
