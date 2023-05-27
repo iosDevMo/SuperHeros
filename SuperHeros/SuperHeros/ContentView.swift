@@ -9,9 +9,11 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        VStack {
-            SuperheroView()
-        }//:Vstack
+        ScrollView(.horizontal){
+            HStack {
+                SuperheroView()
+            }//:Hstack
+        }
     }
 }
 
