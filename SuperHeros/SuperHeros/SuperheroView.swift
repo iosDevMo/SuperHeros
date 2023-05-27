@@ -9,6 +9,8 @@ import SwiftUI
 
 struct SuperheroView: View {
     var gradient : [Color] = [Color("colorHulk01"), Color("colorHulk02")]
+    @State var isPresentAlert : Bool = false
+    
     var body: some View {
         ZStack {
             Image("hulk")
@@ -20,7 +22,7 @@ struct SuperheroView: View {
                     .fontWeight(.heavy)
                     .foregroundColor(.white)
                 Button {
-                    //add action
+                    isPresentAlert.toggle()
                 } label: {
                     HStack{
                         Text("Start")
@@ -31,7 +33,8 @@ struct SuperheroView: View {
                     .background(LinearGradient(gradient: Gradient(colors: gradient), startPoint: .bottomTrailing, endPoint: .topLeading))
                     .clipShape(Capsule())
                     .shadow(radius: 10)
-                    
+                    .alert(isPresented: $isPresentAlert){ Alert(title: Text ("More about Hulk"), message: Text ("Hulk is very green"), dismissButton : .default(Text ("OK")))
+                    }//:Alert
                 }//:label
 
                 
