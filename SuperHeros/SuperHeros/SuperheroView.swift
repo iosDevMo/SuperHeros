@@ -13,6 +13,7 @@ struct SuperheroView: View {
     @State var isScaling : Bool = false
     @State var isSliding : Bool = false
     @State var isPresentAlert : Bool = false
+    var hapticImpact = UIImpactFeedbackGenerator(style: .heavy)
     
     //var gradient : [Color] = [Color("colorHulk01"), Color("colorHulk02")]
     
@@ -30,6 +31,7 @@ struct SuperheroView: View {
                     .foregroundColor(.white)
                 Button {
                     isPresentAlert.toggle()
+                    hapticImpact.impactOccurred()
                 } label: {
                     HStack{
                         Text("Start")
