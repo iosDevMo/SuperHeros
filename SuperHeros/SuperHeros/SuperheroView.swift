@@ -32,6 +32,7 @@ struct SuperheroView: View {
                 Button {
                     isPresentAlert.toggle()
                     hapticImpact.impactOccurred()
+                    playSound(sound: "chimeup", type: "mp3")
                 } label: {
                     HStack{
                         Text("Start")
